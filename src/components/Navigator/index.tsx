@@ -1,4 +1,6 @@
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import Link from "next/link";
 import { MdKeyboardArrowRight as Arrow } from "react-icons/md";
 
 interface Props {
@@ -18,17 +20,20 @@ export const Navigator = ({
     href: "/#",
   },
 }: Props) => {
+  const router = useRouter();
+  const { route } = router;
+
   return (
-    <div className="flex w-full h-10 border-b fixed p-2 px-5 text-gray-500 items-center bg-white">
+    <div className="flex w-full h-10 border-b p-2 px-5 text-gray-500 items-center bg-white">
       <Breadcrumb separator={<Arrow className="text-sky-500" size={18} />}>
         <BreadcrumbItem className="font-bold text-gray-700">
-          <BreadcrumbLink href="#">Home</BreadcrumbLink>
+          <BreadcrumbLink as={Link} href="/">
+            Home
+          </BreadcrumbLink>
         </BreadcrumbItem>
 
-        <BreadcrumbItem isCurrentPage>
-          <BreadcrumbLink className="font-bold" href="#">
-            {current.title}
-          </BreadcrumbLink>
+        <BreadcrumbItem className="font-bold" isCurrentPage>
+          <Link href={current.href}>{current?.title}</Link>
         </BreadcrumbItem>
       </Breadcrumb>
     </div>

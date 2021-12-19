@@ -7,9 +7,6 @@ export const Header = () => {
   return (
     <div className="flex fixed z-50  w-full px-12 items-center justify-between h-12 border border-t-0 shadow bg-white">
       <span className="flex flex-row">
-        <span className="mr-4">
-          <MenuIcon size={24} />
-        </span>
         <Branding />
       </span>
 

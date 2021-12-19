@@ -4,8 +4,17 @@ import type { AppProps } from "next/app";
 import { Header } from "../components/Header";
 import { Sidebar } from "../components/Sidebar";
 import { Navigator } from "../components/Navigator";
+import { useRouter } from "next/router";
 
 function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+  const { pathname, route } = router;
+
+  const current = {
+    title: pathname.substring(1, 2)?.toUpperCase() + pathname.substring(2),
+    href: route,
+  };
+
   return (
     <>
       <ChakraProvider>
@@ -17,11 +26,11 @@ function App({ Component, pageProps }: AppProps) {
             <aside>
               <Sidebar />
             </aside>
-            <main className=" w-full h-full bg-gray-200 overflow-auto ">
-              <Navigator />
-              <span className="pt-[90rem]">
+            <main className="flex flex-col w-full h-full bg-gray-200 ">
+              <Navigator current={current} />
+              <div className="overflow-y-auto">
                 <Component {...pageProps} />
-              </span>
+              </div>
             </main>
           </div>
         </div>

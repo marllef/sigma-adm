@@ -1,11 +1,11 @@
 import type { NextPage } from "next";
 
-const Home: NextPage = () => {
+const Order: NextPage = () => {
   return (
     <div className="flex h-full w-full items-center justify-center">
-      Page of Index.tsx
+      The Page Order.tsx
     </div>
   );
 };
 
-export default Home;
+export default Order;

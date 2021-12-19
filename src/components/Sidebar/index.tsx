@@ -12,12 +12,12 @@ export const Sidebar = () => {
   return (
     <div className="flex flex-col h-full w-48 shadow justify-between py-2 text-white bg-slate-800">
       <span>
-        <NavItem Icon={Dash} title="Dashboard" />
+        <NavItem Icon={Dash} title="Dashboard" href="/" />
         <NavDivider>Organização</NavDivider>
-        <NavItem Icon={Dollar} title="Orçamentos" />
-        <NavItem Icon={Date} title="Encomendas" />
+        <NavItem Icon={Dollar} title="Orçamentos" href="/budget" />
+        <NavItem Icon={Date} title="Encomendas" href="/order" />
         <NavDivider>Clientes</NavDivider>
-        <NavItem Icon={Client} title="Clientes" />
+        <NavItem Icon={Client} title="Clientes" href="/clientes" />
       </span>
       <NavItem Icon={Logout} title="Sair" />
     </div>
