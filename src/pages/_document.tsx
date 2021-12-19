@@ -17,7 +17,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <meta http-equiv="Content-Language" content="pt-br" />
+          <meta httpEquiv="Content-Language" content="pt-br" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
             rel="preconnect"

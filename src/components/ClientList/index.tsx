@@ -1,4 +1,12 @@
-import { Table as ChackraList, ListItem } from "@chakra-ui/react";
+import {
+  List as ChackraList,
+  ListItem,
+  Thead,
+  Th,
+  Tr,
+  Td,
+  Tbody,
+} from "@chakra-ui/react";
 
 interface Props {
   data?: number[];
