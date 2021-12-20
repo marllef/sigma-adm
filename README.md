@@ -1,7 +1,10 @@
 ## SigmaADM
 Um software de gestão de recursos e encomendas desenvolvido para facilitar a administração de pequenas organizações.
 
-## Tecnologias
+### Ajustes e Melhorias
+Este projeto ainda está em desenvolvimento, desta forma, ajustes e melhorias serão adicionados com o tempo.
+
+### Tecnologias
 Algumas das tecnologias utilizadas neste projeto são:
 
 * NextJS
