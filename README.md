@@ -7,6 +7,7 @@ Algumas das tecnologias utilizadas neste projeto são:
 * NextJS
 * TypeScript
 * Prisma ORM
+* PostgreSQL
 
 ## Autores
 * **Marllef H. A. Freitas**: @marllefH (https://github.com/marllefH)
