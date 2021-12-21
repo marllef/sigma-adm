@@ -28,7 +28,7 @@ function App({ Component, pageProps }: AppProps) {
             </aside>
             <main className="flex flex-col w-full h-full bg-gray-200 ">
               <Navigator current={current} />
-              <div className="overflow-y-auto">
+              <div className=" h-full overflow-y-auto">
                 <Component {...pageProps} />
               </div>
             </main>

@@ -11,11 +11,12 @@ datasource db {
 }
 
 model Cliente {
-  id      String   @id @default(cuid())
-  name    String
-  tel     String?
-  cpf     String?  @unique
-  compras Compra[]
+  id       String   @id @default(cuid())
+  name     String
+  tel      String?
+  cpf      String?  @unique
+  location String?
+  compras  Compra[]
 
   updated_at DateTime @default(now())
   created_at DateTime @default(now())
