@@ -1,34 +1,8 @@
 import type { NextPage } from "next";
 import { Button } from "../components/Button";
 import { ClientList } from "../components/ClientList";
+import { BasicModal } from "../components/Modal/BasicModal";
 import { SearchBar } from "../components/SearchBar";
-
-const myData = [
-  {
-    id: 1,
-    name: "Marllef Hyorrane Alves de Freitas",
-    tel: "84 9 XXXX-XXXX",
-    updated_at: new Date().toDateString().toString(),
-  },
-  {
-    id: 2,
-    name: "Miqueias A Freitas",
-    tel: "84 9 XXXX-XXXX",
-    updated_at: new Date().toDateString().toString(),
-  },
-  {
-    id: 3,
-    name: "Mariana A Freitas",
-    tel: "84 9 XXXX-XXXX",
-    updated_at: new Date().toDateString().toString(),
-  },
-  {
-    id: 4,
-    name: "Rejane A Freitas",
-    tel: "84 9 XXXX-XXXX",
-    updated_at: new Date().toDateString().toString(),
-  },
-];
 
 const Clientes: NextPage = () => {
   return (
@@ -36,9 +10,9 @@ const Clientes: NextPage = () => {
       <div className="bg-white rounded border h-full">
         <div className="flex flex-row justify-between items-center">
           <SearchBar />
-          <Button label="Cadastrar" onClick={() => {}} />
+          <BasicModal />
         </div>
-        <ClientList data={myData} />
+        <ClientList />
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ export const ListHeader = () => {
           <div className=" w-72">Nome</div>
           <div className=" w-44">Telefone</div>
           <div className=" w-44">Cidade</div>
-          <div className=" w-32">Atualizado em</div>
+          <div className=" w-32">Criado em</div>
         </div>
         <div className="flex w-72 items-center justify-center">Ações</div>
       </div>

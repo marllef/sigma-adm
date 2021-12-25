@@ -1,10 +1,12 @@
 import "../styles/globals.css";
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
 import { Header } from "../components/Header";
 import { Sidebar } from "../components/Sidebar";
 import { Navigator } from "../components/Navigator";
 import { useRouter } from "next/router";
+import Head from "next/head";
+import { theme } from "../styles/theme";
 
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -17,7 +19,10 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
+        <Head>
+          <title>Sigma</title>
+        </Head>
         <div className="max-h-screen max-w-screen overflow-hidden">
           <header>
             <Header />

@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Cliente {
-  id       String   @id @default(cuid())
+  id       Int      @id @default(autoincrement())
   name     String
   tel      String?
   cpf      String?  @unique
@@ -27,7 +27,7 @@ model Compra {
   total Decimal
 
   Cliente   Cliente? @relation(fields: [clienteId], references: [id])
-  clienteId String?
+  clienteId Int?
 
   details DetalhesDaCompra[]
 
