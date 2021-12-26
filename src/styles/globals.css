@@ -10,7 +10,7 @@
 
 @layer components {
   .outlined {
-    @apply focus:outline-offset-0 focus:outline-sky-300 focus:outline-[3px];
+    @apply focus:ring focus:ring-sky-300 outline-none;
   }
 
   .button-red {

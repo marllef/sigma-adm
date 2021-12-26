@@ -13,7 +13,7 @@ export const Button = ({
 }: Props) => {
   return (
     <button
-      className={`m-2 px-3 py-1 ${colorScheme} text-white font-semibold rounded`}
+      className={`m-2 px-3 py-1 ${colorScheme} text-white font-semibold rounded select-none`}
       {...rest}
     >
       {label}

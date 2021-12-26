@@ -9,15 +9,22 @@ import {
   useDisclosure,
   ModalProps,
 } from "@chakra-ui/react";
+import { ReactNode } from "react";
 import { Button } from "../Button";
 import { TextInput } from "../Form/Input/TextInput";
-import { RegisterClientForm } from "../Form/RegisterClientForm";
+import { RegisterForm } from "../Form/RegisterClient";
 
 interface Props {
   title?: string;
+  children?: ReactNode;
+  footer?: ReactNode[];
 }
 
-export const BasicModal = ({ title = "Modal" }: Props) => {
+export const BasicModal = ({
+  title = "Modal",
+  children,
+  footer = [],
+}: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -27,14 +34,12 @@ export const BasicModal = ({ title = "Modal" }: Props) => {
         <ModalContent>
           <ModalHeader>{title}</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>
-            <RegisterClientForm />
-          </ModalBody>
+          <ModalBody>{children}</ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="button-red" label="Cancelar" onClick={onClose} />
-
-            <Button label="Salvar" colorScheme="button-green" />
+            {footer.map((item, index) => (
+              <div key={index}>{item}</div>
+            ))}
           </ModalFooter>
         </ModalContent>
       </Modal>

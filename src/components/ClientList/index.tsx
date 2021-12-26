@@ -38,6 +38,7 @@ export const ClientList = () => {
                 >
                   <ClientListItem
                     key={item.id}
+                    id={item.id}
                     name={item.name}
                     location={item.location!}
                     tel={item.tel}

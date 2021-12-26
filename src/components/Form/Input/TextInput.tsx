@@ -21,11 +21,14 @@ export const TextInput = ({ name, ...rest }: Props) => {
   }, [fieldName, registerField]);
 
   return (
-    <input
-      className=" flex w-full p-2 outlined bg-gray-50 border rounded"
-      ref={textInputRef}
-      name={name}
-      {...rest}
-    />
+    <>
+      <input
+        className="flex w-full p-2 outlined bg-gray-50 border rounded"
+        ref={textInputRef}
+        name={name}
+        {...rest}
+      />
+      {error ? <p>{error}</p> : null}
+    </>
   );
 };
