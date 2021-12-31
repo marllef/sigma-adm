@@ -9,11 +9,16 @@ export const useFetchClientes = (url: string) => {
         method: "GET",
       });
 
-      const data: Cliente[] = await response.json();
-      return data;
+      if (response.ok) {
+        const data: Cliente[] = await response.json();
+        return data;
+      } else {
+        const err = await response.json();
+        throw new Error(err.message);
+      }
     },
     {
-      refreshInterval: 6000,
+      refreshInterval: 7000,
     }
   );
 

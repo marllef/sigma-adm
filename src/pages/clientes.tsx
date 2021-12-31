@@ -1,3 +1,4 @@
+import { useDisclosure } from "@chakra-ui/react";
 import { FormHandles } from "@unform/core";
 import type { NextPage } from "next";
 import { useRef } from "react";
@@ -9,6 +10,7 @@ import { SearchBar } from "../components/SearchBar";
 
 const Clientes: NextPage = () => {
   const formRef = useRef<FormHandles>(null);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <div className="h-full p-2">
@@ -17,13 +19,17 @@ const Clientes: NextPage = () => {
           <SearchBar />
           <BasicModal
             title="Novo Cliente"
+            isOpen={isOpen}
+            onOpen={onOpen}
+            onClose={onClose}
             footer={[
-              <Button label="Cancelar" colorScheme="button-red" />,
+              <Button label="Cancelar" colorScheme="red" />,
               <Button
                 label="Salvar"
-                colorScheme="button-green"
+                colorScheme="green"
                 onClick={() => {
                   formRef.current?.submitForm();
+                  onClose();
                 }}
               />,
             ]}

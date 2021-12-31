@@ -2,7 +2,13 @@ import { HStack, useToast, VStack } from "@chakra-ui/react";
 import { Cliente } from "@prisma/client";
 import { FormHandles, FormProps } from "@unform/core";
 import { Form } from "@unform/web";
-import { useEffect, forwardRef, MutableRefObject, useState } from "react";
+import {
+  useEffect,
+  forwardRef,
+  MutableRefObject,
+  useState,
+  useImperativeHandle,
+} from "react";
 import { TextInput } from "../Input";
 import yup from "yup";
 
@@ -63,12 +69,33 @@ export const RegisterForm = forwardRef<FormHandles, Props>(
     return (
       <Form ref={formRef} onSubmit={handleSubmit} {...props}>
         <VStack>
-          <TextInput required name="name" placeholder="Nome completo" />
+          <TextInput
+            required
+            name="name"
+            label="Nome Completo"
+            placeholder="Informe o nome..."
+          />
           <HStack>
-            <TextInput required name="cpf" placeholder="CPF" />
-            <TextInput required name="tel" placeholder="Telefone" />
+            <TextInput
+              required
+              name="cpf"
+              label="CPF"
+              placeholder="Informe o CPF..."
+            />
+            <TextInput
+              required
+              type="number"
+              name="tel"
+              label="Telefone"
+              placeholder="Informe o telefone..."
+            />
           </HStack>
-          <TextInput required name="location" placeholder="Cidade" />
+          <TextInput
+            required
+            name="location"
+            label="Cidade"
+            placeholder="Informe a cidade..."
+          />
         </VStack>
       </Form>
     );

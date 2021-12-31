@@ -9,19 +9,28 @@
 }
 
 @layer components {
-  .outlined {
-    @apply focus:ring focus:ring-sky-300 outline-none;
+  
+  input.inpt-outline {
+    @apply flex w-full p-2 outline-none focus:ring focus:ring-sky-300 bg-white border rounded;
   }
 
-  .button-red {
-    @apply focus:ring focus:ring-red-300 bg-red-500 hover:bg-red-600 text-white font-semibold;
+  button {
+    @apply rounded font-semibold text-white select-none focus:outline-none;
   }
 
-  .button-blue {
-    @apply focus:ring focus:ring-sky-300 bg-sky-500 hover:bg-sky-600 text-white font-semibold;
+  button.red {
+    @apply focus:ring focus:ring-red-300 bg-red-600 hover:bg-red-700 text-white font-semibold;
   }
 
-  .button-green {
-    @apply focus:ring focus:ring-green-300 bg-green-500 hover:bg-green-600 text-white font-semibold;
+  button.blue {
+    @apply focus:ring focus:ring-sky-300 bg-sky-600 hover:bg-sky-700 text-white font-semibold;
+  }
+
+  button.green {
+    @apply focus:ring focus:ring-green-300 bg-green-600 hover:bg-green-700 text-white font-semibold;
+  }
+
+  button.unstyled {
+    @apply focus:ring focus:ring-gray-300 bg-gray-300 hover:bg-gray-200 text-white font-semibold;
   }
 }

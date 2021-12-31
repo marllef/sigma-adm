@@ -1,4 +1,4 @@
-import { List as CList, ListItem, Skeleton } from "@chakra-ui/react";
+import { List as CList, ListItem, Skeleton, useToast } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useFetchClientes } from "../../utils/fetcher";
 import { ListHeader } from "./ListHeader";
@@ -13,9 +13,21 @@ export const ClientList = () => {
     "api/database/get-clientes"
   );
 
+  const toast = useToast({
+    position: "bottom-right",
+    isClosable: true,
+    duration: 5000,
+  });
+
   useEffect(() => {
     if (error) {
-      console.log(error.message);
+      toast({
+        title: "Erro ao carregar dados",
+        description: error,
+        status: "error",
+        position: "bottom-right",
+        duration: 4000,
+      });
     }
   }, [error]);
 
@@ -27,7 +39,7 @@ export const ClientList = () => {
             <ListHeader />
           </ListItem>
 
-          {data?.length ? (
+          {data?.length &&
             data.map((item, index) => {
               return (
                 <ListItem
@@ -46,12 +58,7 @@ export const ClientList = () => {
                   />
                 </ListItem>
               );
-            })
-          ) : (
-            <div className="flex h-full w-full items-center justify-center">
-              Loading...
-            </div>
-          )}
+            })}
         </CList>
       </div>
     </>

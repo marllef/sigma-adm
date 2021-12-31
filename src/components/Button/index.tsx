@@ -3,17 +3,17 @@ import { ButtonHTMLAttributes } from "react";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   label?: string;
-  colorScheme?: "button-red" | "button-blue" | "button-green";
+  colorScheme?: "red" | "blue" | "green";
 }
 
 export const Button = ({
   label = "Button",
-  colorScheme = "button-blue",
+  colorScheme = "blue",
   ...rest
 }: Props) => {
   return (
     <button
-      className={`m-2 px-3 py-1 ${colorScheme} text-white font-semibold rounded select-none`}
+      className={`${colorScheme} m-2 px-3 py-1 select-none`}
       {...rest}
     >
       {label}
