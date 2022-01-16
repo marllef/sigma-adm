@@ -38,7 +38,7 @@ export const BasicModal = ({
       {activator?.length ? (
         activator.map((item, index) => <div key={index + "Btn"}>{item}</div>)
       ) : (
-        <Button label="Cadastrar" onClick={onOpen} />
+        <Button label="Cadastrar" variant="blue" onClick={onOpen} />
       )}
 
       <Modal

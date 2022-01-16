@@ -1,0 +1,39 @@
+.container {
+  @apply pb-2;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 10em 1fr 0.5fr;
+  justify-content: center;
+  gap: 0.5em 0.5em;
+
+  grid-template-areas:
+    "C1 C1 C2 C2 C3 C3"
+    "C4 C4 C4 C5 C5 C5"
+    "C6 C6 C7 C7 C8 C8";
+}
+
+.C1 {
+  grid-area: C1;
+}
+.C2 {
+  grid-area: C2;
+}
+.C3 {
+  grid-area: C3;
+}
+.C4 {
+  grid-area: C4;
+}
+.C5 {
+  grid-area: C5;
+}
+.C6 {
+  grid-area: C6;
+}
+.C7 {
+  grid-area: C7;
+}
+.C8 {
+  grid-area: C8;
+}

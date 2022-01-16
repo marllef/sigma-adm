@@ -33,8 +33,8 @@ export default async function handler(
         res.status(200).json(getCliente);
         break;
       case "PUT":
-        const { location, name, tel }: Cliente = parse<Cliente>(req);
-
+        const { location, name, tel } = parse<Cliente>(req);
+        console.log(name);
         const putCliente = await cliente.update({
           data: {
             location,

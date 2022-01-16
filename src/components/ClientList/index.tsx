@@ -33,8 +33,8 @@ export const ClientList = () => {
 
   return (
     <>
-      <div className="flex w-full p-2 items-start justify-start ">
-        <CList className="flex flex-col border-slate-300 w-full h-full justify-start bg-white overflow-y-auto">
+      <div className="flex w-full p-2 items-start justify-start">
+        <CList className="flex flex-col border-slate-300 w-full justify-start bg-white">
           <ListItem>
             <ListHeader />
           </ListItem>
@@ -54,7 +54,9 @@ export const ClientList = () => {
                     name={item.name}
                     location={item.location!}
                     tel={item.tel}
-                    updated_at={item.created_at}
+                    cpf={item.cpf!}
+                    created_at={item.created_at}
+                    updated_at={item.updated_at}
                   />
                 </ListItem>
               );

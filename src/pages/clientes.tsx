@@ -13,9 +13,9 @@ const Clientes: NextPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <div className="h-full p-2">
+    <div className="h-full p-2 overflow-y-hidden">
       <div className="bg-white rounded border h-full">
-        <div className="flex flex-row justify-between items-center">
+        <div className="flex flex-row justify-between items-center ">
           <SearchBar />
           <BasicModal
             title="Novo Cliente"
@@ -23,10 +23,10 @@ const Clientes: NextPage = () => {
             onOpen={onOpen}
             onClose={onClose}
             footer={[
-              <Button label="Cancelar" colorScheme="red" />,
+              <Button label="Cancelar" variant="red" />,
               <Button
                 label="Salvar"
-                colorScheme="green"
+                variant="green"
                 onClick={() => {
                   formRef.current?.submitForm();
                   onClose();
@@ -37,6 +37,7 @@ const Clientes: NextPage = () => {
             <RegisterForm ref={formRef} />
           </BasicModal>
         </div>
+
         <ClientList />
       </div>
     </div>

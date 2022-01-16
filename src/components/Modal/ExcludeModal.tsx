@@ -1,5 +1,6 @@
 import { useDisclosure, useToast } from "@chakra-ui/react";
 import { Button } from "../Button";
+import { ActionButton } from "../Button/ActionButton";
 import { BasicModal } from "./BasicModal";
 
 interface Props {
@@ -44,19 +45,10 @@ export const ExcludeAction = ({ id, name }: Props) => {
       onClose={onClose}
       footer={[
         <Button label="Cancelar" onClick={onClose} />,
-        <Button
-          colorScheme="red"
-          label="Deletar"
-          onClick={handleDelete}
-        />,
+        <Button variant="red" label="Deletar" onClick={handleDelete} />,
       ]}
       activator={[
-        <span
-          className="group w-4 flex flex-col items-center text-sm mx-10 font-semibold text-red-500 hover:text-red-600 cursor-pointer"
-          onClick={onOpen}
-        >
-          <span>Exluir</span>
-        </span>,
+        <ActionButton label="Excluir" variant="red" onClick={onOpen} />,
       ]}
     >
       Deseja exluir o cadastro de {name}? Essa ação é irreversível.

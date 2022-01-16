@@ -1,0 +1,15 @@
+.base {
+  @apply rounded px-3 py-1 mr-2 font-semibold select-none focus:outline-none focus:ring text-black text-sm;
+}
+
+.red {
+  @apply focus:ring-red-300 bg-red-600 hover:bg-red-700 text-white;
+}
+
+.blue {
+  @apply focus:ring-sky-300 bg-sky-600 hover:bg-sky-700 text-white;
+}
+
+.green {
+  @apply focus:ring-green-300 bg-green-600 hover:bg-green-700 text-white;
+}
