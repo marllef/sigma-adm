@@ -7,12 +7,13 @@ import {
   MdPeople as Client,
 } from "react-icons/md";
 import { NavDivider } from "./NavDivider";
+import styles from "./SideBar.module.css";
 
 export const Sidebar = () => {
   return (
-    <div className="flex flex-col h-full w-48 shadow justify-between py-2 text-white bg-slate-800">
+    <div className={styles.sideBar__container}>
       <span>
-        <NavItem Icon={Dash} title="Dashboard" href="/" />
+        <NavItem Icon={Dash} title="Painel" href="/" />
         <NavDivider>Organização</NavDivider>
         <NavItem Icon={Dollar} title="Orçamentos" href="/budget" />
         <NavItem Icon={Date} title="Encomendas" href="/order" />

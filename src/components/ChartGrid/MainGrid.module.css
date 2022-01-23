@@ -1,5 +1,5 @@
 .container {
-  @apply pb-2;
+  @apply p-2;
   display: grid;
   width: 100%;
   grid-template-columns: repeat(6, 1fr);

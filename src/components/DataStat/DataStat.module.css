@@ -1,0 +1,43 @@
+.stat {
+  @apply flex flex-col items-center w-full h-full bg-white rounded shadow p-2;
+}
+
+.stat__label {
+  @apply text-xl font-semibold;
+}
+
+.stat__number {
+  @apply w-full text-center text-6xl pb-2 border-dashed font-semibold border-b;
+}
+
+.stat__unit {
+  @apply text-4xl font-normal;
+}
+
+.stat__footer {
+  @apply flex flex-1  w-full flex-row justify-between;
+}
+
+.stat__footer_item {
+  @apply flex flex-col w-full text-sm text-center justify-center font-semibold;
+}
+
+.stat__footer_value {
+  @apply text-2xl font-normal leading-5 text-sky-600;
+}
+
+.stat__history_montly_label {
+  @apply text-2xl font-normal leading-5 text-sky-600;
+}
+
+.input {
+  @apply text-green-600;
+}
+
+.output {
+  @apply text-red-600;
+}
+
+.total {
+  @apply text-sky-600;
+}

@@ -1,0 +1,3 @@
+.navDivider__container {
+  @apply w-full px-5 text-xs my-2 font-roboto text-gray-400 select-none;
+}

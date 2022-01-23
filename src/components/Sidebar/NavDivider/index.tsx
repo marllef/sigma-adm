@@ -1,10 +1,11 @@
+import styles from "./NavDivider.module.css";
 interface Props {
   children?: string;
 }
 
 export const NavDivider = ({ children }: Props) => {
   return (
-    <div className="w-full px-5 text-xs my-2 font-roboto text-gray-400 select-none">
+    <div className={styles.navDivider__container}>
       <div>{children?.toString().toUpperCase()}</div>
     </div>
   );

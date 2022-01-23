@@ -7,18 +7,16 @@ interface MainGridProps {
 
 export const MainGrid = ({ children }: MainGridProps) => {
   return (
-    <div className="flex w-full h-full items-start p-2">
-      <div className={styles.container}>
-        {Children.map(children, (child, index) => {
-          if (index < 8) {
-            return (
-              <div key={index} className={styles[`C${index + 1}`]}>
-                {child}
-              </div>
-            );
-          }
-        })}
-      </div>
+    <div className={styles.container}>
+      {Children.map(children, (child, index) => {
+        if (index < 8) {
+          return (
+            <div key={index} className={styles[`C${index + 1}`]}>
+              {child}
+            </div>
+          );
+        }
+      })}
     </div>
   );
 };

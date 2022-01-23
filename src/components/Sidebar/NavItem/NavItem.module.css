@@ -1,0 +1,5 @@
+.navItem__container {
+  @apply flex w-full text-sm font-open-sans h-10 p-5 
+  text-gray-100 bg-slate-800 hover:bg-slate-700
+  justify-start items-center select-none cursor-pointer;
+}

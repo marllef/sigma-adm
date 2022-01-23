@@ -1,0 +1,12 @@
+.header__container {
+  @apply flex fixed z-50  w-full px-12 items-center justify-between 
+  h-12 border border-t-0 shadow bg-white;
+}
+
+.header__brand {
+  @apply flex flex-row;
+}
+
+.header__actions {
+  @apply flex flex-row items-center justify-between;
+}
