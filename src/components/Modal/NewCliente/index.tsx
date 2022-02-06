@@ -43,6 +43,7 @@ export const AddCliente = () => {
 
   function handleSubmit() {
     formRef.current?.submitForm();
+    onClose();
   }
 
   async function onSubmit(data: Cliente, { reset }: { reset: Function }) {

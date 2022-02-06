@@ -10,8 +10,16 @@
   @apply w-full;
 }
 
+.listFooter {
+  @apply flex flex-col h-full justify-end;
+}
+
 .listItem {
   @apply flex flex-1 border-b last:border-none text-left p-1;
+}
+
+.listItem .name {
+  @apply font-semibold;
 }
 
 .listItem_color {
@@ -19,7 +27,7 @@
 }
 
 .item {
-  @apply flex-1 px-2 py-2 last:border-l;
+  @apply flex flex-1 items-center text-sm px-2 py-1 last:border-l;
 }
 
 .head {

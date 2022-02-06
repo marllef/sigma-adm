@@ -3,7 +3,7 @@
 }
 
 .paperBody {
-  @apply bg-white rounded border;
+  @apply flex flex-col bg-white rounded border h-full;
 }
 
 .paperHeader {

@@ -1,0 +1,19 @@
+.container {
+  @apply rounded mb-2;
+}
+
+.numbers {
+  @apply p-1 border m-1 rounded font-semibold;
+}
+
+.active {
+  @apply bg-sky-600 text-white;
+}
+
+.numbers a {
+  @apply p-2;
+}
+
+.numberAlign {
+  @apply flex justify-center;
+}
