@@ -1,4 +1,6 @@
 import styles from "./Pagination.module.css";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { useEffect, useState } from "react";
 
 interface PaginationProps {
   count: number;
@@ -13,20 +15,39 @@ export const Pagination = ({
   currentPage,
   paginate,
 }: PaginationProps) => {
-  const pages = [];
-  const counters = Math.ceil(totalItems / count);
+  const pageSize = count;
+  const maxPages = 5;
 
-  for (let i = 1; i <= Math.ceil(totalItems / count); i++) {
-    pages.push(i);
+  const totalPages = Math.ceil(totalItems / pageSize);
+
+  let startPage: number, endPage: number;
+
+  if (totalPages <= maxPages) {
+    startPage = 1;
+    endPage = totalPages;
+  } else {
+    let maxPagesBeforeCurrentPage = Math.floor(maxPages / 2);
+    let maxPagesAfterCurrentPage = Math.ceil(maxPages / 2) - 1;
+
+    if (currentPage <= maxPagesBeforeCurrentPage) {
+      startPage = 1;
+      endPage = maxPages;
+    } else if (currentPage + maxPagesAfterCurrentPage >= totalPages) {
+      startPage = totalPages - maxPages + 1;
+      endPage = totalPages;
+    } else {
+      startPage = currentPage - maxPagesBeforeCurrentPage;
+      endPage = currentPage + maxPagesAfterCurrentPage;
+    }
   }
 
-  if (counters / 2 > 5) {
-    if (currentPage - Math.round(counters / 2) === 0) {
-      pages.splice(currentPage - 1 - (counters % count), (counters % 10) - 1, 0);
-    } else if (currentPage - counters / 2 < 0) {
-      pages.splice(currentPage + 1, counters % 10, 0);
-    } else {
-      pages.splice(currentPage - 2 - (counters % 10), counters % 10, 0);
+  const pages = Array.from(Array(endPage + 1 - startPage).keys()).map(
+    (i) => startPage + i
+  );
+
+  function handleArrowClick(value: number = 0) {
+    if (currentPage + value > 0 && currentPage + value <= totalPages) {
+      paginate(currentPage + value);
     }
   }
 
@@ -34,8 +55,24 @@ export const Pagination = ({
     <>
       <nav className={styles.container}>
         <ul className={styles.numberAlign}>
-          {pages.map((number, index) => {
-            if (number === 0) {
+          <li
+            className={`${styles.numbers} ${
+              currentPage === 1 && styles.active
+            }`}
+            key={1}
+          >
+            <button onClick={() => paginate(1)}>{1}</button>
+          </li>
+
+          <li
+            className={`${styles.numbers} ${styles.arrow}`}
+            onClick={() => handleArrowClick(-1)}
+          >
+            <FaArrowLeft size={12} />
+          </li>
+
+          {pages.map((number) => {
+            if (number !== 1 && number !== totalPages)
               return (
                 <li
                   className={`${styles.numbers} ${
@@ -43,26 +80,26 @@ export const Pagination = ({
                   }`}
                   key={number}
                 >
-                  <a href={`#${number}`} onClick={() => paginate(number)}>
-                    ...
-                  </a>
+                  <button onClick={() => paginate(number)}>{number}</button>
                 </li>
               );
-            }
-
-            return (
-              <li
-                className={`${styles.numbers} ${
-                  currentPage === number && styles.active
-                }`}
-                key={number}
-              >
-                <a href={`#${number}`} onClick={() => paginate(number)}>
-                  {number}
-                </a>
-              </li>
-            );
           })}
+
+          <li
+            className={`${styles.numbers} ${styles.arrow}`}
+            onClick={() => handleArrowClick(+1)}
+          >
+            <FaArrowRight size={12} />
+          </li>
+
+          <li
+            className={`${styles.numbers} ${
+              currentPage === totalPages && styles.active
+            }`}
+            key={1}
+          >
+            <button onClick={() => paginate(totalPages)}>{totalPages}</button>
+          </li>
         </ul>
       </nav>
     </>

@@ -1,17 +1,21 @@
 .container {
-  @apply rounded mb-2;
+  @apply rounded mb-2 select-none;
 }
 
 .numbers {
   @apply p-1 border m-1 rounded font-semibold hover:bg-gray-100;
 }
 
-.numbers a {
-  @apply p-2;
+.numbers button {
+  @apply px-2 font-semibold;
 }
 
 .numbers.active {
   @apply bg-sky-500 text-white hover:bg-sky-600;
+}
+
+.numbers.arrow {
+  @apply flex justify-center items-center px-2 hover:cursor-pointer;
 }
 
 .numberAlign {
