@@ -1,0 +1,11 @@
+.container {
+  @apply h-full p-2 overflow-y-auto;
+}
+
+.paperBody {
+  @apply bg-white rounded border;
+}
+
+.paperHeader {
+  @apply flex flex-row justify-between items-center;
+}

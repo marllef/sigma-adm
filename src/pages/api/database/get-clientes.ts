@@ -56,7 +56,7 @@ export default async function handler(
         });
     }
   } catch (err: any) {
-    return res.json({
+    return res.status(500).json({
       message: err?.message,
       type: "ApiError",
       status: 500,

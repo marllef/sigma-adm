@@ -1,23 +1,27 @@
+import styles from "./clientes.module.css";
 import { useDisclosure } from "@chakra-ui/react";
 import { FormHandles } from "@unform/core";
 import type { NextPage } from "next";
 import { useRef } from "react";
-import { Button } from "../components/Button";
-import { ClientList } from "../components/ClientList";
-import { RegisterForm } from "../components/Form/RegisterClient";
-import { BasicModal } from "../components/Modal/BasicModal";
-import { SearchBar } from "../components/SearchBar";
+import { ListView } from "~/components/ListView";
+import { Button } from "../../components/Button";
+import { ClientList } from "../../components/ClientList";
+import { RegisterForm } from "../../components/Form/RegisterClient";
+import { BasicModal } from "../../components/Modal/BasicModal";
+import { SearchBar } from "../../components/SearchBar";
+import { AddCliente } from "~/components/Modal/NewCliente";
 
 const Clientes: NextPage = () => {
   const formRef = useRef<FormHandles>(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <div className="h-full p-2 overflow-y-hidden">
-      <div className="bg-white rounded border h-full">
-        <div className="flex flex-row justify-between items-center ">
+    <div className={styles.container}>
+      <div className={styles.paperBody}>
+        <div className={styles.paperHeader}>
           <SearchBar />
-          <BasicModal
+          <AddCliente/>
+          {/*<BasicModal
             title="Novo Cliente"
             isOpen={isOpen}
             onOpen={onOpen}
@@ -35,10 +39,10 @@ const Clientes: NextPage = () => {
             ]}
           >
             <RegisterForm ref={formRef} />
-          </BasicModal>
+          </BasicModal>*/}
         </div>
 
-        <ClientList />
+        <ListView />
       </div>
     </div>
   );

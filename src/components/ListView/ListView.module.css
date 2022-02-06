@@ -1,0 +1,31 @@
+.listTable {
+  @apply flex flex-col flex-nowrap m-2 border rounded-t-sm;
+}
+
+.listTHead {
+  @apply w-full text-xs;
+}
+
+.listTBody {
+  @apply w-full;
+}
+
+.listItem {
+  @apply flex flex-1 border-b last:border-none text-left p-1;
+}
+
+.listItem_color {
+  @apply bg-slate-100;
+}
+
+.item {
+  @apply flex-1 px-2 py-2 last:border-l;
+}
+
+.head {
+  @apply flex flex-1 bg-slate-100 text-left p-1;
+}
+
+.headItem {
+  @apply flex-1 px-2 last:border-l text-gray-600 last:text-center;
+}

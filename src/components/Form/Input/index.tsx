@@ -1,3 +1,4 @@
 import { TextInput } from "./TextInput";
+import { InputMask } from "./InputMask";
 
-export { TextInput };
+export { TextInput, InputMask };

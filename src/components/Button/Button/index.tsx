@@ -7,7 +7,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button = ({
-  label = "Clique aqui... ",
+  label,
   variant = "blue",
   ...rest
 }: Props) => {

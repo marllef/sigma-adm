@@ -1,0 +1,7 @@
+.input-outline {
+  @apply flex w-full p-2 outline-none focus:ring focus:ring-sky-300 bg-white border rounded;
+}
+
+.error {
+  @apply border-red-400;
+}
