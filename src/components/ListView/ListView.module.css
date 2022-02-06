@@ -3,7 +3,7 @@
 }
 
 .listTHead {
-  @apply w-full text-xs;
+  @apply w-full text-xs border-b;
 }
 
 .listTBody {

@@ -1,4 +1,5 @@
 import { Cliente } from "@prisma/client";
+import { EditAction } from "~/components/Modal/EditModal";
 import { ExcludeAction } from "~/components/Modal/ExcludeModal";
 import styles from "../ListView.module.css";
 
@@ -19,6 +20,7 @@ export const ListItem = ({ data, index }: ListItemData) => {
       <td className={styles.item}>{data.location}</td>
       <td className={styles.item}>
         <ExcludeAction id={data.id} name={data.name} />
+        <EditAction cliente={data} />
       </td>
     </tr>
   );

@@ -22,7 +22,6 @@ export const useFetchClientes = (url: string) => {
         refreshInterval: 7000,
       }
     );
-
     return { data, error, isValidating };
   } catch (err: any) {
     console.log(err.message);

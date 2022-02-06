@@ -9,6 +9,7 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
+
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"]
@@ -19,6 +20,13 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.module.css", "prisma/seed.js"],
+  "include": [
+    "next-env.d.ts",
+    "src/types/*",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.module.css",
+    "prisma/seed.js"
+  ],
   "exclude": ["node_modules"]
 }

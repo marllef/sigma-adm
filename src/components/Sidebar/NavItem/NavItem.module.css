@@ -3,3 +3,7 @@
   text-gray-100 bg-slate-800 hover:bg-slate-700
   justify-start items-center select-none cursor-pointer;
 }
+
+.active {
+  @apply bg-slate-700;
+}

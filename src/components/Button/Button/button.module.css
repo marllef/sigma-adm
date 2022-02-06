@@ -7,7 +7,7 @@
 }
 
 .blue {
-  @apply focus:ring-sky-300 bg-sky-600 hover:bg-sky-700 text-white;
+  @apply focus:ring-sky-300 bg-sky-500 hover:bg-sky-600 text-white;
 }
 
 .green {

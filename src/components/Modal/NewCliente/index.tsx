@@ -43,7 +43,6 @@ export const AddCliente = () => {
 
   function handleSubmit() {
     formRef.current?.submitForm();
-    onClose();
   }
 
   async function onSubmit(data: Cliente, { reset }: { reset: Function }) {
@@ -59,6 +58,8 @@ export const AddCliente = () => {
         success({
           description: `Cliente cadastrado com exito!`,
         });
+
+        onClose();
       }
     } catch (err: any) {
       const validationErrors: any = {};

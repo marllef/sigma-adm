@@ -3,15 +3,15 @@
 }
 
 .numbers {
-  @apply p-1 border m-1 rounded font-semibold;
-}
-
-.active {
-  @apply bg-sky-600 text-white;
+  @apply p-1 border m-1 rounded font-semibold hover:bg-gray-100;
 }
 
 .numbers a {
   @apply p-2;
+}
+
+.numbers.active {
+  @apply bg-sky-500 text-white hover:bg-sky-600;
 }
 
 .numberAlign {

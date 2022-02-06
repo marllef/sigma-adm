@@ -1,7 +1,19 @@
+.container {
+  @apply flex w-full flex-col;
+}
+
+.label {
+  @apply font-semibold py-1 text-gray-600;
+}
+
 .input-outline {
   @apply flex w-full p-2 outline-none focus:ring focus:ring-sky-300 bg-white border rounded;
 }
 
-.error {
+.input-outline.disabled {
+  @apply bg-slate-100;
+}
+
+.input-outline.error {
   @apply border-red-400;
 }

@@ -10,6 +10,7 @@ import { NavDivider } from "./NavDivider";
 import styles from "./SideBar.module.css";
 
 export const Sidebar = () => {
+
   return (
     <div className={styles.sideBar__container}>
       <span>

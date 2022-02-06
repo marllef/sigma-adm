@@ -6,47 +6,73 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { ClienteDataTypes } from "~/interfaces/DataCliente";
 import { Button } from "~/components/Button";
 import { ActionButton } from "../Button/ActionButton";
-import { TextInput } from "../Form/Input";
+import { InputMask, TextInput } from "../Form/Input";
 import { BasicModal } from "./BasicModal";
+import { ValidationError } from "yup";
+import { validate } from "~/utils/validation";
 
 interface Props {
-  cliente: ClienteDataTypes;
+  cliente: Cliente;
 }
 
 export const EditAction = ({ cliente }: Props) => {
   const { id, ...rest } = cliente;
   const { isOpen, onClose, onOpen } = useDisclosure();
   const formRef = useRef<FormHandles>(null);
-  const toast = useToast();
+
+  const error = useToast({
+    title: "Erro ao atualizar cadastro.",
+    status: "error",
+    variant: "solid",
+    position: "bottom-right",
+    isClosable: true,
+    duration: 3000,
+  });
+
+  const success = useToast({
+    title: "Cadastro atualizado!",
+    status: "success",
+    variant: "solid",
+    position: "bottom-right",
+    isClosable: true,
+    duration: 3000,
+  });
 
   async function handleEdit(data: any) {
-    const response = await fetch(`/api/database/clientes/${id}`, {
-      method: "PUT",
-      body: JSON.stringify({
-        id,
-        ...data,
-      }),
-    });
+    try {
+      const validatedCliente = await validate.cliente(data);
+      const response = await fetch(`/api/database/clientes/${id}`, {
+        method: "PUT",
+        body: JSON.stringify({
+          id,
+          ...validatedCliente,
+        }),
+      });
 
-    if (response.ok) {
-      toast({
-        title: "Cadastro Atualizado Com Sucesso!",
-        status: "success",
-        position: "bottom-right",
-        isClosable: true,
-        duration: 5000,
-      });
-    } else {
-      toast({
-        title: "Erro ao Atualizar Cadastro!",
-        description: response.statusText,
-        status: "error",
-        position: "bottom-right",
-        isClosable: true,
-        duration: 3000,
-      });
+      if (response.ok) {
+        success();
+      } else {
+        error({
+          description: response.statusText,
+        });
+      }
+      onClose();
+    } catch (err) {
+      const validationErrors: any = {};
+
+      if (err instanceof ValidationError) {
+        err.inner.forEach((mError) => {
+          const { path } = mError;
+          error({
+            title: mError.name,
+            description: mError.message,
+          });
+          validationErrors[path!] = mError.message;
+        });
+
+        formRef.current!.setErrors(validationErrors);
+      }
     }
-    onClose();
   }
 
   const submit = useCallback(() => {
@@ -73,16 +99,17 @@ export const EditAction = ({ cliente }: Props) => {
             placeholder="Informe o nome..."
           />
           <HStack>
-            <TextInput
+            <InputMask
+              mask={"999.999.999-99"}
               required
               disabled
               name="cpf"
               label="CPF"
               placeholder="Informe o CPF..."
             />
-            <TextInput
+            <InputMask
+              mask="(99) 99999-9999"
               required
-              type="number"
               name="tel"
               label="Telefone"
               placeholder="Informe o telefone..."

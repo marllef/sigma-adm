@@ -1,9 +1,9 @@
 .container {
-  @apply h-full p-2 overflow-y-auto;
+  @apply h-full p-2 overflow-y-hidden;
 }
 
 .paperBody {
-  @apply flex flex-col bg-white rounded border h-full;
+  @apply flex flex-col bg-white rounded border h-full overflow-y-auto;
 }
 
 .paperHeader {
