@@ -51,57 +51,61 @@ export const Pagination = ({
     }
   }
 
-  return (
-    <>
-      <nav className={styles.container}>
-        <ul className={styles.numberAlign}>
-          <li
-            className={`${styles.numbers} ${
-              currentPage === 1 && styles.active
-            }`}
-            key={1}
-          >
-            <button onClick={() => paginate(1)}>{1}</button>
-          </li>
+  if (totalPages > 1) {
+    return (
+      <>
+        <nav className={styles.container}>
+          <ul className={styles.numberAlign}>
+            <li
+              className={`${styles.numbers} ${
+                currentPage === 1 && styles.active
+              }`}
+              key={1}
+            >
+              <button onClick={() => paginate(1)}>{1}</button>
+            </li>
 
-          <li
-            className={`${styles.numbers} ${styles.arrow}`}
-            onClick={() => handleArrowClick(-1)}
-          >
-            <FaArrowLeft size={12} />
-          </li>
+            <li
+              className={`${styles.numbers} ${styles.arrow}`}
+              onClick={() => handleArrowClick(-1)}
+            >
+              <FaArrowLeft size={12} />
+            </li>
 
-          {pages.map((number) => {
-            if (number !== 1 && number !== totalPages)
-              return (
-                <li
-                  className={`${styles.numbers} ${
-                    currentPage === number && styles.active
-                  }`}
-                  key={number}
-                >
-                  <button onClick={() => paginate(number)}>{number}</button>
-                </li>
-              );
-          })}
+            {pages.map((number) => {
+              if (number !== 1 && number !== totalPages)
+                return (
+                  <li
+                    className={`${styles.numbers} ${
+                      currentPage === number && styles.active
+                    }`}
+                    key={number}
+                  >
+                    <button onClick={() => paginate(number)}>{number}</button>
+                  </li>
+                );
+            })}
 
-          <li
-            className={`${styles.numbers} ${styles.arrow}`}
-            onClick={() => handleArrowClick(+1)}
-          >
-            <FaArrowRight size={12} />
-          </li>
+            <li
+              className={`${styles.numbers} ${styles.arrow}`}
+              onClick={() => handleArrowClick(+1)}
+            >
+              <FaArrowRight size={12} />
+            </li>
 
-          <li
-            className={`${styles.numbers} ${
-              currentPage === totalPages && styles.active
-            }`}
-            key={1}
-          >
-            <button onClick={() => paginate(totalPages)}>{totalPages}</button>
-          </li>
-        </ul>
-      </nav>
-    </>
-  );
+            <li
+              className={`${styles.numbers} ${
+                currentPage === totalPages && styles.active
+              }`}
+              key={totalPages + Math.random()}
+            >
+              <button onClick={() => paginate(totalPages)}>{totalPages}</button>
+            </li>
+          </ul>
+        </nav>
+      </>
+    );
+  }
+
+  return null;
 };

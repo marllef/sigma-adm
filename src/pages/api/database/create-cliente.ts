@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { Cliente, PrismaClient } from "@prisma/client";
+import { Cliente, PrismaClient, Prisma } from "@prisma/client";
 
 type Data = Cliente;
 
@@ -19,19 +19,23 @@ export default async function handler(
   try {
     switch (req.method) {
       case "POST":
-        const { name, location, tel, cpf } =
+        const { name, email, tel, cpf, address } =
           typeof req.body !== "object" ? JSON.parse(req.body) : req.body;
         // console.log("-> Dados recebidos: ", JSON.parse(req.body));
         const newCliente = await cliente.create({
           data: {
             name,
-            location,
             tel,
             cpf,
+            email,
+            address: {
+              create: {
+                ...address,
+              },
+            },
           },
         });
 
-        console.log("Cliente Cadastrado...", newCliente);
         return res.status(200).json(newCliente);
 
       default:

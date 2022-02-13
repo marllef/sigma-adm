@@ -1,4 +1,4 @@
-import { Cliente } from "@prisma/client";
+import { ClienteWithAddress as Cliente } from "~/interfaces/Prisma";
 import Yup, { string, object, ValidationError, number } from "yup";
 
 const cliente = async (data: Cliente) => {
@@ -8,7 +8,16 @@ const cliente = async (data: Cliente) => {
       name: string().required("O campo nome é obrigatório."),
       tel: string().required("O campo telefone é obrigatório."),
       cpf: string().required("O campo CPF é obrigatório."),
-      location: string(),
+      email: string().required("O campo email é obrigatório."),
+      address: object().shape({
+        street: string().required("O campo logradouro é obrigatório."),
+        number: string().required("O campo número é obrigatório."),
+        district: string().required("O campo bairro é obrigatório."),
+        postalcode: string().required("O campo CEP é obrigatório."),
+        city: string().required("O campo cidade é obrigatório."),
+        state: string().required("O campo estado é obrigatório."),
+        complement: string().optional(),
+      }),
     });
 
     return await schema.validate(data, { abortEarly: false });

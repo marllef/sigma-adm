@@ -1,11 +1,11 @@
-import { Cliente } from "@prisma/client";
+import { ClienteWithAddress as Cliente } from "~/interfaces/Prisma";
 import useSWR from "swr";
 
-export const useFetchClientes = (url: string) => {
-  try {
-    const { data, error, isValidating } = useSWR(
-      url,
-      async (url) => {
+export const useFetchClientes = (url: string | null) => {
+  const { data, error, isValidating } = useSWR(
+    url,
+    async (url) => {
+      try {
         const response = await fetch(url, {
           method: "GET",
         });
@@ -13,18 +13,16 @@ export const useFetchClientes = (url: string) => {
         if (response.ok) {
           const data: Cliente[] = await response.json();
           return data;
-        } else {
-          const err = await response.json();
-          throw new Error(err.message);
         }
-      },
-      {
-        refreshInterval: 7000,
+      } catch (err: any) {
+        throw new Error(err.message);
       }
-    );
-    return { data, error, isValidating };
-  } catch (err: any) {
-    console.log(err.message);
-    return { data: [], error: err.message };
-  }
+    },
+    {
+      refreshInterval: 7000,
+      errorRetryCount: 3,
+      errorRetryInterval: 15000,
+    }
+  );
+  return { data: data!, error, isValidating };
 };

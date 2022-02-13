@@ -1,16 +1,18 @@
-import { HStack, useToast, VStack } from "@chakra-ui/react";
-import { Cliente } from "@prisma/client";
-import { FormHandles, FormProps } from "@unform/core";
-import { Form } from "@unform/web";
 import {
-  useEffect,
-  forwardRef,
-  MutableRefObject,
-  useState,
-  useImperativeHandle,
-} from "react";
+  HStack,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  useToast,
+  VStack,
+} from "@chakra-ui/react";
+import { Cliente } from "@prisma/client";
+import { FormHandles } from "@unform/core";
+import { Form } from "@unform/web";
+import { useEffect, forwardRef, MutableRefObject, useState } from "react";
 import { TextInput } from "../Input";
-import yup from "yup";
 
 interface Props {
   name?: string;
@@ -68,35 +70,47 @@ export const RegisterForm = forwardRef<FormHandles, Props>(
 
     return (
       <Form ref={formRef} onSubmit={handleSubmit} {...props}>
-        <VStack>
-          <TextInput
-            required
-            name="name"
-            label="Nome Completo"
-            placeholder="Informe o nome..."
-          />
-          <HStack>
-            <TextInput
-              required
-              name="cpf"
-              label="CPF"
-              placeholder="Informe o CPF..."
-            />
-            <TextInput
-              required
-              type="number"
-              name="tel"
-              label="Telefone"
-              placeholder="Informe o telefone..."
-            />
-          </HStack>
-          <TextInput
-            required
-            name="location"
-            label="Cidade"
-            placeholder="Informe a cidade..."
-          />
-        </VStack>
+        <Tabs>
+          <TabList>
+            <Tab>Identificaçao</Tab>
+            <Tab>Dois</Tab>
+            <Tab>Três</Tab>
+          </TabList>
+        </Tabs>
+
+        <TabPanels>
+          <TabPanel>
+            <VStack>
+              <TextInput
+                required
+                name="name"
+                label="Nome Completo"
+                placeholder="Informe o nome..."
+              />
+              <HStack>
+                <TextInput
+                  required
+                  name="cpf"
+                  label="CPF"
+                  placeholder="Informe o CPF..."
+                />
+                <TextInput
+                  required
+                  type="number"
+                  name="tel"
+                  label="Telefone"
+                  placeholder="Informe o telefone..."
+                />
+              </HStack>
+              <TextInput
+                required
+                name="location"
+                label="Cidade"
+                placeholder="Informe a cidade..."
+              />
+            </VStack>
+          </TabPanel>
+        </TabPanels>
       </Form>
     );
   }

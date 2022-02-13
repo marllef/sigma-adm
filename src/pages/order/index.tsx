@@ -1,9 +1,19 @@
 import type { NextPage } from "next";
+import styles from "./order.module.css";
+import { List } from "~/components/List";
+import { Empty } from "~/components/Empty";
+import { useState } from "react";
 
 const Order: NextPage = () => {
+  const [data, setData] = useState([]);
   return (
-    <div className="flex h-full w-full items-center justify-center">
-      The Page Order.tsx
+    <div className={styles.container}>
+      <div className={styles.orderBody}>
+        <List
+          isEmpty={!data.length}
+          source={{ data: data, colNames: ["Table"] }}
+        />
+      </div>
     </div>
   );
 };

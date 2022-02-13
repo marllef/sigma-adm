@@ -5,7 +5,7 @@ import Database from "~/database/DatabaseClient";
 
 type Data = Cliente | Cliente[] | null;
 
-const { cliente, $disconnect } = Database.getInstance().prisma;
+const { cliente } = Database.getInstance().prisma;
 
 export default async function handler(
   req: NextApiRequest,
@@ -14,9 +14,37 @@ export default async function handler(
   try {
     switch (req.method) {
       case "GET":
-        const mCliente = await cliente.findMany({});
+        const clientes = await cliente.findMany({
+          orderBy: {
+            name: "asc",
+          },
+          include: {
+            address: true,
+          },
+        });
 
-        res.status(200).json(mCliente);
+        res.status(200).json(clientes);
+        break;
+      case "POST":
+        const { name, email, gender, tel, cpf, address } =
+          typeof req.body !== "object" ? JSON.parse(req.body) : req.body;
+
+        const newCliente = await cliente.create({
+          data: {
+            name,
+            tel,
+            cpf,
+            gender,
+            email,
+            address: {
+              create: {
+                ...address,
+              },
+            },
+          },
+        });
+        console.log("Cadastrado: ", newCliente);
+        res.status(200).json(newCliente);
         break;
       default:
         throw new Error(
@@ -25,7 +53,5 @@ export default async function handler(
     }
   } catch (err: any) {
     console.log(err.message);
-  } finally {
-    await $disconnect();
   }
 }

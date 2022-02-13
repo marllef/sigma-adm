@@ -1,0 +1,11 @@
+.container {
+  @apply h-full p-2 overflow-y-hidden;
+}
+
+.orderBody {
+  @apply flex flex-col bg-white rounded border h-full overflow-y-auto;
+}
+
+.paperHeader {
+  @apply flex flex-row justify-between items-center;
+}

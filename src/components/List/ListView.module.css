@@ -1,0 +1,16 @@
+.listTable {
+  @apply flex flex-col flex-nowrap m-2 rounded-t-sm;
+}
+
+.listTHead {
+  @apply w-full text-xs border-b;
+}
+
+.listTBody {
+  @apply w-full h-full;
+}
+
+.listFooter {
+  @apply flex flex-col h-full justify-end;
+}
+

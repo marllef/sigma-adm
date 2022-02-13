@@ -11,15 +11,30 @@ datasource db {
 }
 
 model Cliente {
-  id       Int      @id @default(autoincrement())
-  name     String
-  tel      String?
-  cpf      String?  @unique
-  location String?
-  compras  Compra[]
+  id        Int      @id @default(autoincrement())
+  name      String
+  tel       String
+  email     String
+  gender    Gender   @default(Outros)
+  cpf       String   @unique
+  address   Address  @relation(fields: [addressId], references: [id])
+  addressId Int
+  compras   Compra[]
 
   updated_at DateTime @default(now())
   created_at DateTime @default(now())
+}
+
+model Address {
+  id         Int       @id @default(autoincrement())
+  street     String
+  number     String
+  district   String
+  postalcode String
+  city       String
+  state      String
+  complement String?
+  Cliente    Cliente[]
 }
 
 model Compra {
@@ -62,4 +77,10 @@ model Produto {
   updated_at DateTime @default(now())
 
   detalhesDaCompra DetalhesDaCompra[]
+}
+
+enum Gender {
+  Feminino
+  Masculino
+  Outros
 }

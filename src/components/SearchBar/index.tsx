@@ -1,14 +1,20 @@
 import { Input } from "@chakra-ui/react";
-import { SearchButton } from "./Button";
+import styles from "./SearchBar.module.css";
 
-export const SearchBar = () => {
+interface SearchBarProps {
+  onSearch: { (value: string): void };
+}
+
+export const SearchBar = ({ onSearch }: SearchBarProps) => {
   return (
-    <div className=" flex flex-row w-64 p-2 ">
-      <div className="flex bg-gray-50 w-full rounded border  py-1 px-2">
-        <Input variant={"unstyled"} size={"sm"} placeholder="Pesquisar... " />
-      </div>
-      <div className="ml-1">
-        <SearchButton />
+    <div className={styles.container}>
+      <div className={styles.inputWrapper}>
+        <Input
+          variant={"unstyled"}
+          size={"sm"}
+          onChange={(event) => onSearch(event.currentTarget.value)}
+          placeholder="Pesquisar... "
+        />
       </div>
     </div>
   );

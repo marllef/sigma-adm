@@ -1,0 +1,7 @@
+.container {
+  @apply flex flex-row w-60 p-2;
+}
+
+.inputWrapper {
+  @apply flex bg-slate-50 w-full rounded border py-1 px-2 text-gray-600;
+}
