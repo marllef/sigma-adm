@@ -1,4 +1,20 @@
-import { HStack, useDisclosure, useToast, VStack } from "@chakra-ui/react";
+import {
+  HStack,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalOverlay,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  useDisclosure,
+  useToast,
+  VStack,
+} from "@chakra-ui/react";
 import { Cliente } from "@prisma/client";
 import { FormHandles } from "@unform/core";
 import { Form } from "@unform/web";
@@ -10,6 +26,7 @@ import { InputMask, TextInput } from "../Form/Input";
 import { BasicModal } from "./BasicModal";
 import { ValidationError } from "yup";
 import { validate } from "~/utils/validation";
+import { SelectBox } from "../Form/Select";
 
 interface Props {
   cliente: Cliente;
@@ -18,6 +35,7 @@ interface Props {
 export const EditAction = ({ cliente }: Props) => {
   const { id, ...rest } = cliente;
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const [tabIndex, setTabIndex] = useState(0);
   const formRef = useRef<FormHandles>(null);
 
   const error = useToast({
@@ -75,54 +93,155 @@ export const EditAction = ({ cliente }: Props) => {
     }
   }
 
-  const submit = useCallback(() => {
-    formRef.current?.submitForm();
-  }, [formRef]);
+  function handleClose() {
+    setTabIndex(0);
+    onClose();
+  }
+
+  function handleCancel() {
+    setTabIndex(0);
+    formRef.current?.reset();
+    onClose();
+  }
+
+  function handleSubmit() {
+    if (tabIndex === 1) {
+      formRef.current?.submitForm();
+    } else {
+      setTabIndex((value) => value + 1);
+    }
+  }
 
   return (
-    <BasicModal
-      isOpen={isOpen}
-      title="Editar Cadastro"
-      onClose={onClose}
-      footer={[
-        <Button label="Cancelar" variant="red" onClick={onClose} />,
-        <Button label="Salvar" variant="green" onClick={submit} />,
-      ]}
-      activator={[<ActionButton label="Editar" onClick={onOpen} />]}
-    >
-      <Form ref={formRef} onSubmit={handleEdit} initialData={{ ...rest }}>
-        <VStack>
-          <TextInput
-            required
-            name="name"
-            label="Nome Completo"
-            placeholder="Informe o nome..."
-          />
-          <HStack>
-            <InputMask
-              mask={"999.999.999-99"}
-              required
-              disabled
-              name="cpf"
-              label="CPF"
-              placeholder="Informe o CPF..."
-            />
-            <InputMask
-              mask="(99) 99999-9999"
-              required
-              name="tel"
-              label="Telefone"
-              placeholder="Informe o telefone..."
-            />
-          </HStack>
-          <TextInput
-            required
-            name="location"
-            label="Cidade"
-            placeholder="Informe a cidade..."
-          />
-        </VStack>
-      </Form>
-    </BasicModal>
+    <>
+      <Button
+        variant="unstyled"
+        colorScheme="blue"
+        label="Editar"
+        onClick={onOpen}
+      />
+      <Modal closeOnEsc={false} isOpen={isOpen} onClose={handleClose} size="lg">
+        <ModalOverlay />
+
+        <ModalContent>
+          <ModalCloseButton />
+
+          <ModalBody>
+            <Form ref={formRef} onSubmit={handleEdit} initialData={{ ...rest }}>
+              <Tabs variant={"enclosed"} index={tabIndex}>
+                <TabList>
+                  <Tab onClick={() => setTabIndex(0)}>Identificação</Tab>
+                  <Tab onClick={() => setTabIndex(1)}>Endereço</Tab>
+                </TabList>
+
+                <TabPanels>
+                  <TabPanel>
+                    <VStack>
+                      <TextInput
+                        name="name"
+                        label="Nome Completo"
+                        placeholder="Informe o nome"
+                      />
+                      <HStack w="full">
+                        <InputMask
+                          mask="999.999.999-99"
+                          name="cpf"
+                          label="CPF"
+                          placeholder="Informe o CPF"
+                        />
+                        <InputMask
+                          mask="(99) 99999-9999"
+                          name="tel"
+                          label="Telefone"
+                          placeholder="Informe o telefone"
+                        />
+                      </HStack>
+                      <HStack w={"full"}>
+                        <TextInput
+                          name="email"
+                          label="E-mail"
+                          type="email"
+                          placeholder="Informe o e-mail"
+                        />
+                        <SelectBox
+                          name="gender"
+                          label="Gênero"
+                          placeholder="Selecione"
+                        />
+                      </HStack>
+                    </VStack>
+                  </TabPanel>
+
+                  <TabPanel>
+                    <VStack>
+                      <TextInput
+                        required
+                        name="address.street"
+                        label="Logradouro"
+                        placeholder="Informe o logradouro"
+                      />
+
+                      <HStack w="full">
+                        <TextInput
+                          required
+                          name="address.number"
+                          type={"number"}
+                          label="Número"
+                          placeholder="Número"
+                        />
+                        <TextInput
+                          required
+                          name="address.district"
+                          label="Bairro"
+                          placeholder="Bairro"
+                        />
+                        <InputMask
+                          mask="99999-999"
+                          required
+                          name="address.postalcode"
+                          label="CEP"
+                          placeholder="CEP"
+                        />
+                      </HStack>
+
+                      <HStack w="full">
+                        <TextInput
+                          required
+                          name="address.city"
+                          label="Cidade"
+                          placeholder="Cidade"
+                        />
+
+                        <TextInput
+                          required
+                          name="address.state"
+                          label="Estado"
+                          placeholder="Estado"
+                        />
+                      </HStack>
+
+                      <TextInput
+                        required
+                        name="address.complement"
+                        label="Complemento"
+                        placeholder="Complemento"
+                      />
+                    </VStack>
+                  </TabPanel>
+                </TabPanels>
+              </Tabs>
+            </Form>
+          </ModalBody>
+          <ModalFooter>
+            <Button variant="red" onClick={handleCancel}>
+              Cancelar
+            </Button>
+            <Button variant="green" onClick={handleSubmit}>
+              {tabIndex === 0 ? "Próximo" : "Salvar"}
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
   );
 };

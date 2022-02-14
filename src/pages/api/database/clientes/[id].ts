@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Cliente } from "@prisma/client";
+import { ClienteWithAddress } from "~/interfaces/Prisma";
 import { parse } from "~/utils/parse-json";
 import Database from "~/database/DatabaseClient";
 
@@ -20,6 +21,9 @@ export default async function handler(
           where: {
             id: Number(id),
           },
+          include: {
+            address: true,
+          },
         });
 
         res.status(200).json(deletedCliente);
@@ -29,21 +33,33 @@ export default async function handler(
           where: {
             id: Number(id),
           },
+          include: {
+            address: true,
+          },
         });
         res.status(200).json(getCliente);
         break;
       case "PUT":
-        const { location, name, tel } = parse<Cliente>(req);
+        const { name, tel, address } = parse<ClienteWithAddress>(req);
         console.log(name);
         const putCliente = await cliente.update({
-          data: {
-            location,
-            name,
-            tel,
-            updated_at: new Date(),
-          },
           where: {
             id: Number(id),
+          },
+
+          data: {
+            name,
+            tel,
+            address: {
+              update: {
+                ...address,
+              },
+            },
+            updated_at: new Date(),
+          },
+
+          include: {
+            address: true,
           },
         });
 

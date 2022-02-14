@@ -27,7 +27,7 @@ export const NavItem = ({
   }
 
   return (
-    <Link href={href}>
+    <Link href={href} passHref>
       <div
         className={`${styles.navItem__container} ${
           isActive() && styles["active"]

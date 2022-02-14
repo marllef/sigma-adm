@@ -19,7 +19,7 @@ function genTel() {
 async function main() {
   faker.locale = "pt_BR";
 
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < 20; i++) {
     let gender = faker.name.gender(true);
     let fname = faker.name.firstName(gender);
     let lname = faker.name.lastName(gender);

@@ -23,6 +23,7 @@ import { Button } from "~/components/Button";
 import { TextInput, InputMask } from "~/components/Form/Input";
 import { validate } from "~/utils/validation";
 import { ValidationError } from "yup";
+import { SelectBox } from "~/components/Form/Select";
 
 export const AddCliente = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
@@ -104,7 +105,7 @@ export const AddCliente = () => {
   return (
     <>
       <Button label="Adicionar" onClick={onOpen} />
-      <Modal closeOnEsc={false} isOpen={isOpen} onClose={handleClose}>
+      <Modal closeOnEsc={false} isOpen={isOpen} onClose={handleClose} size="lg">
         <ModalOverlay />
 
         <ModalContent>
@@ -122,34 +123,37 @@ export const AddCliente = () => {
                   <TabPanel>
                     <VStack>
                       <TextInput
-                        required
                         name="name"
                         label="Nome Completo"
                         placeholder="Informe o nome"
                       />
-                      <HStack>
+                      <HStack w="full">
                         <InputMask
                           mask="999.999.999-99"
-                          required
                           name="cpf"
                           label="CPF"
                           placeholder="Informe o CPF"
                         />
                         <InputMask
                           mask="(99) 99999-9999"
-                          required
                           name="tel"
                           label="Telefone"
                           placeholder="Informe o telefone"
                         />
                       </HStack>
-                      <TextInput
-                        required
-                        name="email"
-                        label="E-mail"
-                        type={"email"}
-                        placeholder="Informe o e-mail"
-                      />
+                      <HStack w={"full"}>
+                        <TextInput
+                          name="email"
+                          label="E-mail"
+                          type={"email"}
+                          placeholder="Informe o e-mail"
+                        />
+                        <SelectBox
+                          name="gender"
+                          label="Gênero"
+                          placeholder="Selecione"
+                        />
+                      </HStack>
                     </VStack>
                   </TabPanel>
 
@@ -162,7 +166,7 @@ export const AddCliente = () => {
                         placeholder="Informe o logradouro"
                       />
 
-                      <HStack>
+                      <HStack w="full">
                         <TextInput
                           required
                           name="address.number"
@@ -185,7 +189,7 @@ export const AddCliente = () => {
                         />
                       </HStack>
 
-                      <HStack>
+                      <HStack w="full">
                         <TextInput
                           required
                           name="address.city"

@@ -18,7 +18,7 @@ export const ListItem = ({ data, index }: ListItemData) => {
   return (
     <tr className={`${styles.listItem} ${getBackgroundColor()}`}>
       <td className={`${styles.item} ${styles.name}`}>
-        <Avatar name={data.name} gender={data.gender} />
+        <Avatar name={data.name} />
         {data.name}
       </td>
       <td className={styles.item}>{data.tel}</td>

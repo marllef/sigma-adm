@@ -25,12 +25,12 @@ export const TextInput = ({ name, placeholder, label, ...rest }: Props) => {
 
   return (
     <>
-      <div className="flex w-full flex-col">
-        <label className="font-semibold py-1 text-gray-600" htmlFor={fieldName}>
+      <div className={styles.textInput}>
+        <label className={styles.label} htmlFor={fieldName}>
           {label}
         </label>
         <input
-          className={`${styles["input-outline"]} ${error && styles["error"]}`}
+          className={`${styles["outline"]} ${error && styles["error"]}`}
           id={fieldName}
           ref={textInputRef}
           placeholder={placeholder}

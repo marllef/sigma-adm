@@ -44,11 +44,21 @@ export const ExcludeAction = ({ id, name }: Props) => {
       title="Exluir Cadastro"
       onClose={onClose}
       footer={[
-        <Button label="Cancelar" onClick={onClose} />,
-        <Button variant="red" label="Deletar" onClick={handleDelete} />,
+        <Button key={Math.random()} label="Cancelar" onClick={onClose} />,
+        <Button
+          key={Math.random()}
+          variant="red"
+          label="Deletar"
+          onClick={handleDelete}
+        />,
       ]}
       activator={[
-        <ActionButton label="Excluir" variant="red" onClick={onOpen} />,
+        <ActionButton
+          key={Math.random()}
+          label="Excluir"
+          variant="red"
+          onClick={onOpen}
+        />,
       ]}
     >
       Deseja exluir o cadastro de {name}? Essa ação é irreversível.

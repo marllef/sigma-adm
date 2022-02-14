@@ -1,5 +1,14 @@
-.input-outline {
-  @apply flex w-full p-2 outline-none focus:ring focus:ring-sky-300 bg-white border rounded;
+.outline {
+  @apply flex w-full p-2 outline-none focus:ring focus:ring-sky-300 hover:border-slate-300
+   bg-white border rounded transition;
+}
+
+.textInput {
+  @apply flex w-full flex-col;
+}
+
+.label {
+  @apply font-semibold py-1 text-gray-600;
 }
 
 .error {

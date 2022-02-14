@@ -42,6 +42,9 @@ export default async function handler(
               },
             },
           },
+          include: {
+            address: true,
+          },
         });
         console.log("Cadastrado: ", newCliente);
         res.status(200).json(newCliente);

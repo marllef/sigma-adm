@@ -6,14 +6,10 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  useDisclosure,
-  ModalProps,
   UseModalProps,
 } from "@chakra-ui/react";
 import { ReactNode } from "react";
 import { Button } from "../Button";
-import { TextInput } from "../Form/Input/TextInput";
-import { RegisterForm } from "../Form/RegisterClient";
 
 interface Props extends UseModalProps {
   title?: string;

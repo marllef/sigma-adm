@@ -1,11 +1,12 @@
 import { ClienteWithAddress as Cliente } from "~/interfaces/Prisma";
-import Yup, { string, object, ValidationError, number } from "yup";
+import { string, object, ValidationError, number } from "yup";
 
 const cliente = async (data: Cliente) => {
   try {
     const schema = object().shape({
       id: number().optional(),
       name: string().required("O campo nome é obrigatório."),
+      gender: string().required("O campo gênero é obrigatório."),
       tel: string().required("O campo telefone é obrigatório."),
       cpf: string().required("O campo CPF é obrigatório."),
       email: string().required("O campo email é obrigatório."),
