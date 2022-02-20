@@ -1,0 +1,11 @@
+.container {
+  @apply h-full p-2 overflow-y-hidden;
+}
+
+.budgetContent {
+  @apply flex flex-col bg-white rounded border h-full overflow-y-auto p-1;
+}
+
+.contentHeader {
+  @apply flex flex-row justify-between items-center;
+}

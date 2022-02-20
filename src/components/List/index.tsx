@@ -6,13 +6,14 @@ import { useFetchClientes } from "~/utils/fetcher";
 import { Loading } from "../Loading";
 import { Pagination } from "../Pagination";
 import { EmptyList } from "./EmptyList";
+import { Item } from "./Item";
 import { ListHead } from "./ListHead";
 import { ItemList, ListItem } from "./ListItem";
 import styles from "./ListView.module.css";
 
 export interface Source {
   data: any[];
-  colNames: string[];
+  keys: string[];
 }
 export interface ListProps {
   source: Source;
@@ -30,7 +31,7 @@ export const List = ({
   search = "",
   sort = (a, b) => (a.name !== b.name ? (a.name < b.name ? -1 : 1) : 0),
   filter = (item: Cliente) =>
-    item.name.toLowerCase().includes(search.toLocaleLowerCase()),
+    item.name?.toLowerCase().includes(search.toLocaleLowerCase()),
 }: ListProps) => {
   const [data, setData] = useState(source.data);
   const [itens, setItems] = useState<any[]>([]);
@@ -55,18 +56,18 @@ export const List = ({
     if (typeof renderItem !== "undefined") {
       return renderItem(item, index);
     }
-    return <tr key={item}>{item}</tr>;
+    return <Item key={item} keys={source?.keys} data={item} />;
   }
 
   return (
     <>
       <table className={`${styles.listTable}`}>
         <thead className={styles.listTHead}>
-          <ListHead colsName={source.colNames} />
+          <ListHead colsName={source.keys} />
         </thead>
 
         <tbody className={styles.listTBody}>
-          {!data?.length ? <EmptyList /> : itens?.map(render)}
+          {!data?.length ? <EmptyList /> : (itens || []).map(render)}
         </tbody>
       </table>
 

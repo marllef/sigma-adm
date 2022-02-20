@@ -11,7 +11,7 @@ const Order: NextPage = () => {
       <div className={styles.orderBody}>
         <List
           isEmpty={!data.length}
-          source={{ data: data, colNames: ["Table"] }}
+          source={{ data: data, keys: ["Table"] }}
         />
       </div>
     </div>

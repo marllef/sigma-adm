@@ -22,7 +22,7 @@ export const ListItem = ({ data, index }: ListItemData) => {
         {data.name}
       </td>
       <td className={styles.item}>{data.tel}</td>
-      <td className={styles.item}>{data.address.city}</td>
+      <td className={styles.item}>{data.address?.city}</td>
       <td className={styles.item}>
         {new Date(data.updated_at).toLocaleDateString("pt-Br", {
           dateStyle: "medium",

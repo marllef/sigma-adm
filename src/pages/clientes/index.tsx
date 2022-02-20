@@ -7,6 +7,7 @@ import { AddCliente } from "~/components/Modal/NewCliente";
 import { useFetchClientes } from "~/utils/fetcher";
 import { ListItem } from "~/components/List/ListItem";
 import { useEffect, useState } from "react";
+import { Item } from "~/components/List/Item";
 
 const Clientes: NextPage = () => {
   const { data, isValidating } = useFetchClientes("api/database/clientes");
@@ -23,7 +24,7 @@ const Clientes: NextPage = () => {
         <List
           source={{
             data: data,
-            colNames: ["NOME", "TELEFONE", "CIDADE", "ATUALIZAÇÃO", "AÇÕES"],
+            keys: ["NOME", "TELEFONE", "CIDADE", "ATUALIZAÇÃO", "AÇÕES"],
           }}
           search={search}
           isLoading={isValidating}

@@ -23,7 +23,7 @@ async function main() {
     let gender = faker.name.gender(true);
     let fname = faker.name.firstName(gender);
     let lname = faker.name.lastName(gender);
-    console.log(gender);
+
     const mCliente = await cliente.create({
       data: {
         name: faker.name.findName(fname, lname, gender),
@@ -33,6 +33,7 @@ async function main() {
           .toString(),
         gender: gender,
         tel: genTel(),
+
         address: {
           create: {
             city: faker.address.county(),
@@ -48,6 +49,7 @@ async function main() {
             street: faker.address.streetName(),
           },
         },
+        
       },
     });
     console.log(mCliente);

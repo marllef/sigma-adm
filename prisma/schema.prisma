@@ -11,18 +11,18 @@ datasource db {
 }
 
 model Cliente {
-  id        Int      @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   name      String
   tel       String
   email     String
-  gender    Gender   @default(Outros)
-  cpf       String   @unique
-  address   Address  @relation(fields: [addressId], references: [id])
+  gender    Gender  @default(Outros)
+  cpf       String  @unique
+  address   Address @relation(fields: [addressId], references: [id])
   addressId Int
-  compras   Compra[]
 
   updated_at DateTime @default(now())
   created_at DateTime @default(now())
+  Budget     Budget[]
 }
 
 model Address {
@@ -37,32 +37,30 @@ model Address {
   Cliente    Cliente[]
 }
 
-model Compra {
+model Budget {
   id    Int     @id @default(autoincrement())
   total Decimal
 
-  Cliente   Cliente? @relation(fields: [clienteId], references: [id])
-  clienteId Int?
+  Cliente   Cliente @relation(fields: [clienteId], references: [id])
+  clienteId Int
 
-  details DetalhesDaCompra[]
+  products ProductToBudget[]
 
-  date DateTime @default(now())
+  status Status @default(ANALISANDO)
+
+  updated_at DateTime @default(now())
+  created_at DateTime @default(now())
 }
 
-model DetalhesDaCompra {
-  id Int @id @default(autoincrement())
-
-  unitPrice Decimal
-  discount  Decimal? @default(0)
+model ProductToBudget {
+  id        Int     @id @default(autoincrement())
+  product   Produto @relation(fields: [productId], references: [id])
+  budget    Budget  @relation(fields: [budgetId], references: [id])
   qtd       Int
+  unitPrice Decimal
 
-  date DateTime @default(now())
-
-  produto   Produto @relation(fields: [produtoId], references: [id])
-  produtoId Int
-
-  compra   Compra? @relation(fields: [compraId], references: [id])
-  compraId Int?
+  productId Int
+  budgetId  Int
 }
 
 model Produto {
@@ -76,11 +74,19 @@ model Produto {
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
 
-  detalhesDaCompra DetalhesDaCompra[]
+  budgets ProductToBudget[]
 }
 
 enum Gender {
   Feminino
   Masculino
   Outros
+}
+
+enum Status {
+  ANALISANDO
+  APROVADO
+  CONCLUIDO
+  ENVIADO
+  ENTREGUE
 }

@@ -1,0 +1,15 @@
+.listItem {
+  @apply flex flex-1 overflow-hidden last:border-none text-left p-1 truncate text-ellipsis;
+}
+
+.listItem .name {
+  @apply font-semibold;
+}
+
+.listItem_color {
+  @apply bg-gray-100;
+}
+
+.item {
+  @apply flex flex-1 first:flex-[2] last:flex-[2] last:justify-center items-center text-sm px-2 py-1;
+}
