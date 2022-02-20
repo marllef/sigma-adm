@@ -11,12 +11,8 @@ interface ListItemData {
 }
 
 export const ListItem = ({ data, index }: ListItemData) => {
-  function getBackgroundColor() {
-    return index! % 2 == 0 ? styles.listItem_color : "";
-  }
-
   return (
-    <tr className={`${styles.listItem} ${getBackgroundColor()}`}>
+    <tr className={`${styles.listItem}`}>
       <td className={`${styles.item} ${styles.name}`}>
         <Avatar name={data.name} />
         {data.name}

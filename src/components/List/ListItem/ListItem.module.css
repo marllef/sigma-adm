@@ -1,13 +1,10 @@
 .listItem {
-  @apply flex flex-1 overflow-hidden last:border-none text-left p-1 truncate text-ellipsis;
+  @apply flex flex-1 overflow-hidden last:border-none text-left p-1 truncate text-ellipsis
+   odd:bg-slate-100 even:bg-white;
 }
 
 .listItem .name {
   @apply font-semibold;
-}
-
-.listItem_color {
-  @apply bg-gray-100;
 }
 
 .item {

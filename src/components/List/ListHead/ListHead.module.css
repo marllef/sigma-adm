@@ -2,6 +2,10 @@
   @apply flex flex-1 bg-white text-left p-1;
 }
 
-.headItem {
-  @apply flex-1 px-2 first:flex-[2] last:flex-[2] text-gray-600 last:text-center;
+.item {
+  @apply px-2 text-gray-600;
+}
+
+.spacing {
+  @apply flex-1 first:flex-[2] last:flex-[2] last:text-center;
 }

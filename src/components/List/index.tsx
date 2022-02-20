@@ -19,6 +19,7 @@ export interface ListProps {
   source: Source;
   isLoading?: boolean;
   search?: string;
+  spacing?: string;
   sort?: { (a: any, b: any): number };
   filter?: { (item: any): boolean };
   isEmpty?: boolean;
@@ -28,6 +29,7 @@ export interface ListProps {
 export const List = ({
   renderItem,
   source,
+  spacing,
   search = "",
   sort = (a, b) => (a.name !== b.name ? (a.name < b.name ? -1 : 1) : 0),
   filter = (item: Cliente) =>
@@ -63,7 +65,7 @@ export const List = ({
     <>
       <table className={`${styles.listTable}`}>
         <thead className={styles.listTHead}>
-          <ListHead colsName={source.keys} />
+          <ListHead colsName={source.keys} spacing={spacing} />
         </thead>
 
         <tbody className={styles.listTBody}>

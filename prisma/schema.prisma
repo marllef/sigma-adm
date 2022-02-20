@@ -44,9 +44,9 @@ model Budget {
   Cliente   Cliente @relation(fields: [clienteId], references: [id])
   clienteId Int
 
-  products ProductToBudget[]
-
   status Status @default(ANALISANDO)
+
+  details ProductToBudget[]
 
   updated_at DateTime @default(now())
   created_at DateTime @default(now())

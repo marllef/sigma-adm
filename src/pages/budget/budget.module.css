@@ -9,3 +9,8 @@
 .contentHeader {
   @apply flex flex-row justify-between items-center;
 }
+
+.itemSpacing {
+  @apply flex flex-1 first:w-8 first:justify-center first:flex-none
+   border-l last:flex-[2] last:text-center last:justify-center justify-start px-1;
+}

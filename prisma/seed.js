@@ -49,7 +49,6 @@ async function main() {
             street: faker.address.streetName(),
           },
         },
-        
       },
     });
     console.log(mCliente);

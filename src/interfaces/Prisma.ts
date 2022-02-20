@@ -5,3 +5,9 @@ export type ClienteWithAddress = Prisma.ClienteGetPayload<{
     address: true;
   };
 }>;
+
+export type BudgetWithDetails = Prisma.BudgetGetPayload<{
+  include: {
+    details: true;
+  };
+}>;
